@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yared Alemayehu | Coder and Engineering student</title>
+<meta name="description" content="Yared Alemayehu is an Electrical and Computer Engineering student at Addis Ababa University who builds and ships web apps.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317243A'/><text x='50' y='72' font-size='64' text-anchor='middle' fill='%23EDF2E8'>ያ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Noto+Sans+Ethiopic:wght@500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper: #EDF2E8;
+    --grid: #D2DECC;
+    --grid-hot: #86A681;
+    --ink: #17243A;
+    --ink-soft: #4B5B72;
+    --rule: #B4C5AE;
+    --margin: #C8453B;
+    --live: #1E9E4A;
+    --build: #E3B100;
+    --off: #98A59C;
+    --head: "Bricolage Grotesque", system-ui, sans-serif;
+    --body: "Newsreader", Georgia, serif;
+    --geez: "Noto Sans Ethiopic", "Bricolage Grotesque", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0E1E2E;
+      --grid: #1A2F44;
+      --grid-hot: #3E6E8E;
+      --ink: #E7EEF4;
+      --ink-soft: #9FB0C2;
+      --rule: #27415A;
+      --margin: #E0685E;
+      --off: #5E7083;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font: 1.125rem/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* The one memorable thing: the paper's grid lights up around the cursor. */
+  .hot {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid-hot) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-hot) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(circle 150px at var(--mx, -999px) var(--my, -999px), rgba(0,0,0,.9), transparent);
+    mask-image: radial-gradient(circle 150px at var(--mx, -999px) var(--my, -999px), rgba(0,0,0,.9), transparent);
+  }
+
+  .sheet {
+    position: relative;
+    z-index: 1;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem) 4rem;
+  }
+  .sheet::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--margin);
+    opacity: .55;
+  }
+
+  a { color: inherit; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* Hero */
+  .hero { padding: clamp(3rem, 9vw, 6.5rem) 0 2.5rem; }
+  .hero-name { margin: 0; font: 600 1.125rem/1.2 var(--head); color: var(--ink-soft); }
+  .hero h1 {
+    margin: .05em 0 .1em -.04em;
+    font: 800 clamp(5.5rem, 24vw, 13.5rem)/1 var(--geez);
+  }
+  .lede { max-width: 34rem; margin: 0 0 1.75rem; font-size: 1.375rem; line-height: 1.45; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; padding: 0; margin: 0; list-style: none; }
+  .btn {
+    display: inline-block;
+    padding: .55rem 1rem;
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    font: 600 1rem/1.2 var(--head);
+    text-decoration: none;
+    background: transparent;
+    color: var(--ink);
+    transition: background-color .15s, color .15s;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: transparent; color: var(--ink); }
+  .btn[hidden] { display: none; }
+
+  /* Sections */
+  section { padding-top: 3.5rem; }
+  h2 { margin: 0 0 .5rem; font: 700 clamp(1.75rem, 4vw, 2.25rem)/1.15 var(--head); letter-spacing: -.01em; }
+  .intro { max-width: 36rem; margin: 0 0 1.75rem; color: var(--ink-soft); }
+
+  /* Filters */
+  .toolbar { display: flex; flex-wrap: wrap; gap: .75rem 2rem; margin-bottom: .5rem; }
+  .chips { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .chips-label { font: 600 .9rem var(--head); color: var(--ink-soft); margin-right: .25rem; }
+  .chips button {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .3rem .7rem;
+    border: 1.5px solid var(--rule);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    font: 500 .95rem/1.2 var(--head);
+    cursor: pointer;
+  }
+  .chips button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .count { margin: .5rem 0 0; font: 500 .9rem var(--head); color: var(--ink-soft); min-height: 1.4em; }
+
+  /* LEDs */
+  .led {
+    flex: none;
+    display: inline-block;
+    width: .8rem; height: .8rem;
+    border-radius: 50%;
+    background: var(--off);
+  }
+  .led.live { background: var(--live); box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 28%, transparent); }
+  .led.build { background: var(--build); box-shadow: 0 0 0 3px color-mix(in srgb, var(--build) 30%, transparent); }
+  .led.next { background: transparent; border: 2px solid var(--off); }
+
+  /* Entries */
+  .log { margin-top: .75rem; border-bottom: 1.5px solid var(--rule); }
+  .entry { border-top: 1.5px solid var(--rule); }
+  .entry[hidden] { display: none; }
+  .entry summary {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: 1rem;
+    padding: 1.15rem 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .entry summary::-webkit-details-marker { display: none; }
+  .entry .led { margin-top: .5rem; }
+  .title { display: block; }
+  .title strong { display: block; font: 700 1.4rem/1.2 var(--head); }
+  .title span { display: block; margin-top: .25rem; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.45; }
+  .chev {
+    width: .7rem; height: .7rem; margin-top: .6rem;
+    border-right: 2.5px solid var(--ink);
+    border-bottom: 2.5px solid var(--ink);
+    transform: rotate(45deg);
+    transition: transform .2s;
+  }
+  .entry[open] .chev { transform: rotate(-135deg); margin-top: .85rem; }
+  .entry-body { padding: 0 0 1.5rem 1.8rem; max-width: 40rem; }
+  .entry-body p { margin: 0 0 1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; margin: 0 0 1rem; list-style: none; }
+  .tags li { padding: .15rem .6rem; border: 1.5px solid var(--rule); border-radius: 6px; font: 500 .85rem/1.4 var(--head); }
+  .entry-links { display: flex; flex-wrap: wrap; gap: .6rem; padding: 0; margin: 0; list-style: none; }
+  .empty { margin: 1.25rem 0 0; color: var(--ink-soft); }
+
+  /* Runout demo */
+  .demo {
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border: 2px dashed var(--rule);
+    border-radius: 10px;
+  }
+  .demo h3 { margin: 0 0 .75rem; font: 700 1rem var(--head); }
+  .demo label { display: block; margin-bottom: .75rem; font: 500 .95rem var(--head); }
+  .demo label span { display: flex; justify-content: space-between; margin-bottom: .2rem; }
+  .demo input[type="range"] { width: 100%; accent-color: var(--ink); }
+  .score { margin: .25rem 0 0; font: 600 1rem var(--head); }
+  .score strong { font-size: 2.5rem; font-weight: 800; letter-spacing: -.02em; margin-left: .35rem; }
+  .demo small { display: block; margin-top: .25rem; color: var(--ink-soft); font: 400 .9rem/1.4 var(--body); }
+
+  /* Toolbox */
+  .toolbox { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.5rem 2.5rem; margin: 0; }
+  .toolbox dt { font: 700 1.05rem var(--head); margin-bottom: .2rem; }
+  .toolbox dd { margin: 0; color: var(--ink-soft); }
+
+  /* Log and work */
+  .note { max-width: 36rem; margin: 0 0 1.25rem; }
+  .note.big { font-size: 1.4rem; line-height: 1.45; font-style: italic; }
+  .contact { display: flex; flex-wrap: wrap; gap: .75rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
+  footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1.5px solid var(--rule); color: var(--ink-soft); font: 400 .95rem var(--head); }
+
+  @media (max-width: 34rem) {
+    .entry-body { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="hot" aria-hidden="true"></div>
+
+<div class="sheet">
+  <header class="hero">
+    <p class="hero-name">Yared Alemayehu</p>
+    <h1><span lang="am" aria-hidden="true">ያሬድ</span><span class="sr-only">Yared</span></h1>
+    <p class="lede">I study Electrical and Computer Engineering at Addis Ababa University. I build web apps and data tools, ship them, and document my journey.</p>
+    <ul class="actions">
+      <li><a class="btn solid" href="#work">See what I've built</a></li>
+      <li><a class="btn" href="https://github.com/yar3dalemayehu" rel="noopener">GitHub</a></li>
+      <li><a class="btn" href="https://t.me/jj_builds" rel="noopener">Telegram</a></li>
+      <li><a class="btn" href="https://instagram.com/yar3dalemayehu" rel="noopener">Instagram</a></li>
+      <li><a class="btn" id="upwork-link" href="https://www.upwork.com/freelancers/~0136627b2ad632b24c?mp_source=share" rel="noopener">Upwork</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <section id="work" aria-labelledby="work-h">
+      <h2 id="work-h">Build log</h2>
+      <p class="intro">Everything I've shipped or am shipping. The light shows where it stands. Open an entry for the details.</p>
+
+      <div class="toolbar" role="group" aria-label="Filter projects">
+        <div class="chips" data-filter="status">
+          <span class="chips-label">Status</span>
+          <button type="button" data-v="all" aria-pressed="true">All</button>
+          <button type="button" data-v="live" aria-pressed="false"><i class="led live"></i>Live</button>
+          <button type="button" data-v="build" aria-pressed="false"><i class="led build"></i>Building</button>
+          <button type="button" data-v="next" aria-pressed="false"><i class="led next"></i>Next up</button>
+        </div>
+        <div class="chips" data-filter="stack">
+          <span class="chips-label">Stack</span>
+          <button type="button" data-v="all" aria-pressed="true">Any</button>
+          <button type="button" data-v="Next.js" aria-pressed="false">Next.js</button>
+          <button type="button" data-v="Vue 3" aria-pressed="false">Vue 3</button>
+          <button type="button" data-v="Python" aria-pressed="false">Python</button>
+          <button type="button" data-v="Vercel" aria-pressed="false">Vercel</button>
+        </div>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+
+      <div class="log" id="log">
+        <details class="entry" data-status="live" data-tags="Next.js,TypeScript,Supabase,Vercel">
+          <summary>
+            <i class="led live" role="img" aria-label="Live"></i>
+            <span class="title"><strong>Runout</strong><span>Matches people by music taste, using their Spotify listening.</span></span>
+            <i class="chev" aria-hidden="true"></i>
+          </summary>
+          <div class="entry-body">
+            <p>Sign in with Spotify and Runout compares your top artists and genres with other listeners. The score is 60% artist overlap (Jaccard similarity) plus 40% genre similarity (cosine, weighted by how much you listen to each). Spotify's development mode caps the app at 5 users, so it's a small-circle app for now. Letterboxd is the planned second half.</p>
+            <form class="demo" onsubmit="return false" aria-label="Match score calculator">
+              <h3>Try the match score</h3>
+              <label for="artists"><span>Artist overlap <output id="artistsOut">40%</output></span>
+                <input id="artists" type="range" min="0" max="100" value="40"></label>
+              <label for="genres"><span>Genre similarity <output id="genresOut">70%</output></span>
+                <input id="genres" type="range" min="0" max="100" value="70"></label>
+              <p class="score" aria-live="polite">Match <strong id="score">52%</strong></p>
+              <small>Score = 0.6 × artist overlap + 0.4 × genre similarity.</small>
+            </form>
+            <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>NextAuth</li><li>Supabase</li><li>Vercel</li></ul>
+            <ul class="entry-links">
+              <li><a class="btn solid" href="https://taste-matchup.vercel.app" rel="noopener">Open Runout</a></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="entry" data-status="live" data-tags="Vercel">
+          <summary>
+            <i class="led live" role="img" aria-label="Live"></i>
+            <span class="title"><strong>AAU UAT Simulator</strong><span>A free, timed mock of the Addis Ababa University admission test.</span></span>
+            <i class="chev" aria-hidden="true"></i>
+          </summary>
+          <div class="entry-body">
+            <p>Two timed sections, Verbal (55 questions) and Quantitative (45). Students can jump around with a question navigator, flag questions to come back to, and finish with a score report.</p>
+            <ul class="tags"><li>Web app</li><li>Vercel</li></ul>
+            <ul class="entry-links">
+              <li><a class="btn solid" href="https://free-aau-uat-simulator.vercel.app" rel="noopener">Take a practice exam</a></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="entry" data-status="live" data-tags="Vue 3,TypeScript">
+          <summary>
+            <i class="led live" role="img" aria-label="Live"></i>
+            <span class="title"><strong>GPA Calculator</strong><span>A GPA calculator for university students.</span></span>
+            <i class="chev" aria-hidden="true"></i>
+          </summary>
+          <div class="entry-body">
+            <p>The calculator works and is still growing. Next up is a department course database, so students can pick their courses from a dropdown instead of typing credits by hand.</p>
+            <ul class="tags"><li>Vue 3</li><li>TypeScript</li><li>Vite</li></ul>
+             <ul class="entry-links">
+              <li><a class="btn solid" href="https://jj-gpa-calculator.vercel.app" rel="noopener">Open GPA Calculator</a></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="entry" data-status="live" data-tags="Vercel">
+          <summary>
+            <i class="led live" role="img" aria-label="Live"></i>
+            <span class="title"><strong>Amharic Charades</strong><span>A charades word generator that serves Amharic words.</span></span>
+            <i class="chev" aria-hidden="true"></i>
+          </summary>
+          <div class="entry-body">
+            <p>Think randomwordgenerator.com's charades page, but with words from an Amharic dictionary API, so it works for games in Amharic.</p>
+            <ul class="tags"><li>JavaScript</li></ul>
+             <ul class="entry-links">
+              <li><a class="btn solid" href="https://Amharic-charades.vercel.app" rel="noopener">Try Amharic Charades</a></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="entry" data-status="build" data-tags="Vue 3,TypeScript">
+          <summary>
+            <i class="led build" role="img" aria-label="Building"></i>
+            <span class="title"><strong>Cutline</strong><span>A site to remove image background</span></span>
+            <i class="chev" aria-hidden="true"></i>
+          </summary>
+          <div class="entry-body">
+            <p> Based on the same working principle as https://remove.bg with features to control the edge thickness and opacity with no file size limit</p>
+            <ul class="tags"><li>JS</li><li>HTML</li><li>CSS</li></ul>
+          </div>
+        </details>
+      </div>
+      <p class="empty" id="empty" hidden>No entries match those filters. Set one back to All to see everything.</p>
+    </section>
+
+    <section id="toolbox" aria-labelledby="tool-h">
+      <h2 id="tool-h">Toolbox</h2>
+      <p class="intro">What I reach for, and what I'm still learning, so the list keeps growing.</p>
+      <dl class="toolbox">
+        <div><dt>Languages</dt><dd>Python, TypeScript, JavaScript, HTML and CSS</dd></div>
+        <div><dt>Frameworks</dt><dd>Next.js, React, Vue 3, Vite, FastAPI, Node.js with Express</dd></div>
+        <div><dt>Data and APIs</dt><dd>Supabase (Postgres), SQLite, Pyrogram, NextAuth, the Spotify API</dd></div>
+        <div><dt>Shipping</dt><dd>Git and GitHub, Vercel, Render</dd></div>
+        <div><dt>Also</dt><dd>Image processing with Pillow, data entry, content writing, AI tools</dd></div>
+      </dl>
+    </section>
+
+    <section id="log-note" aria-labelledby="note-h">
+      <h2 id="note-h">The honest version</h2>
+      <p class="note big">I keep a progress log on Telegram. It's the real one, with the failed deploys and the merge conflicts.</p>
+      <a class="btn" href="https://t.me/jj_builds" rel="noopener">Read the log on Telegram</a>
+    </section>
+
+    <section id="hire" aria-labelledby="hire-h">
+      <h2 id="hire-h">Work with me</h2>
+      <p class="note">I take freelance jobs on Upwork: software development, Python scripts and tools, data entry, content writing, and AI-tool workflows. Send a message on Telegram or Instagram to start.</p>
+      <ul class="contact">
+        <li><a class="btn solid" href="https://t.me/jj_builds" rel="noopener">Message on Telegram</a></li>
+        <li><a class="btn" href="https://instagram.com/yar3dalemayehu" rel="noopener">Instagram</a></li>
+        <li><a class="btn" href="https://github.com/yar3dalemayehu" rel="noopener">GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Built by hand in Addis Ababa.</footer>
+</div>
+
+<script>
+  // Fill this in to show an Upwork button in the header.
+  const CONFIG = { upwork: "" };
+
+  const root = document.documentElement;
+
+  // Cursor-lit grid
+  addEventListener("pointermove", (e) => {
+    root.style.setProperty("--mx", e.clientX + "px");
+    root.style.setProperty("--my", e.clientY + "px");
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => {
+    root.style.setProperty("--mx", "-999px");
+    root.style.setProperty("--my", "-999px");
+  });
+
+  // Upwork link
+  const upwork = document.getElementById("upwork-link");
+  if (CONFIG.upwork) { upwork.href = CONFIG.upwork; upwork.hidden = false; }
+
+  // Filters
+  const entries = [...document.querySelectorAll(".entry")];
+  const countEl = document.getElementById("count");
+  const emptyEl = document.getElementById("empty");
+  const state = { status: "all", stack: "all" };
+
+  function applyFilters() {
+    let shown = 0;
+    entries.forEach((el) => {
+      const okStatus = state.status === "all" || el.dataset.status === state.status;
+      const okStack = state.stack === "all" || el.dataset.tags.split(",").includes(state.stack);
+      el.hidden = !(okStatus && okStack);
+      if (!el.hidden) shown++;
+    });
+    emptyEl.hidden = shown > 0;
+    countEl.textContent = "Showing " + shown + " of " + entries.length + " entries";
+  }
+
+  document.querySelectorAll(".chips").forEach((group) => {
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      group.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+      state[group.dataset.filter] = btn.dataset.v;
+      applyFilters();
+    });
+  });
+  applyFilters();
+
+  // Runout match score
+  const artists = document.getElementById("artists");
+  const genres = document.getElementById("genres");
+  function updateScore() {
+    const a = +artists.value, g = +genres.value;
+    document.getElementById("artistsOut").textContent = a + "%";
+    document.getElementById("genresOut").textContent = g + "%";
+    document.getElementById("score").textContent = Math.round(0.6 * a + 0.4 * g) + "%";
+  }
+  artists.addEventListener("input", updateScore);
+  genres.addEventListener("input", updateScore);
+  updateScore();
+</script>
+</body>
+</html>
